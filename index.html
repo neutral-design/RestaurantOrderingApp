@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Smythe&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <title>Restaurant Ordering App</title>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="header-name">Jimmy's Diner</h1>
+      <span class="small">The best burgers and pizzas in town.</span>
+    </header>
+    <main>
+      <div class="menu" id="menu"></div>
+      <div class="order" id="order"></div>
+    </main>
+
+    <div class="modal" id="modal">
+      <form>
+        <input type="text" name="fullName" placeholder="Enter your name" />
+        <input type="text" name="card" placeholder="Enter card number" />
+        <input type="text" name="cvv" placeholder="Enter CVV" />
+        <button typ="submit">Pay</button>
+      </form>
+    </div>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
