@@ -20,11 +20,18 @@ export const menuArray = [
         emoji: "🍺",
         id: 2
     },
-    {
-        name: "Taco",
-        ingredients: ["corn", "beef", "cheese", "lettuce", "tomato", "chili", "cilantro"],
-        price: 4,
-        emoji: "🌮",
-        id: 3
-    }
+    // {
+    //     name: "Taco",
+    //     ingredients: ["corn", "beef", "cheese", "lettuce", "tomato", "chili", "cilantro"],
+    //     price: 4,
+    //     emoji: "🌮",
+    //     id: 3
+    // },
+    // {
+    //     name: "Tropical drink",
+    //     ingredients: ["sugar", "water"],
+    //     price: 3,
+    //     emoji: "🍹",
+    //     id: 4
+    // }
 ]

@@ -1,10 +1,14 @@
 import {menuArray} from "./data.js"
 
 let orderArray = []
+let completedOrder = false
+let customerName = ""
 
 document.addEventListener("click", handleClick)
+document.addEventListener("submit", handleClick)
 
 function handleClick(e){
+
     if(e.target.dataset.buy){
         handleBuyButtonClick(e.target.dataset.buy)
     }
@@ -12,14 +16,21 @@ function handleClick(e){
         handleRemoveButtonClick(e.target.dataset.remove)
     }
     else if(e.target.id==="complete-order-btn") {
-        console.log("Complete order!")
+        handleCompleteOrderButtonClick()
+    }
+    else if(e.target.id==="pay-button"){
+        handlePayButtonClick(e)
+    }
+    else if(e.target.id==="modal-close-btn"){
+        handleCloseModalButtonClick()
     }
 }
 
 function handleBuyButtonClick(chosenId) {
     
-
+    completedOrder = false
     orderArray.push(menuArray.filter( menuItem => menuItem.id==chosenId)[0])
+    
     render()
     
 }
@@ -27,6 +38,39 @@ function handleBuyButtonClick(chosenId) {
 function handleRemoveButtonClick(removeIndex){
     orderArray.splice(removeIndex, 1)
     render()
+}
+
+function handleCompleteOrderButtonClick(){
+    document.getElementById('modal').style.display = "inline"
+}
+
+
+// <input type="text" name="fullName" placeholder="Enter your name" />
+// <input type="text" name="card" placeholder="Enter card number" />
+// <input type="text" name="cvv" placeholder="Enter CVV" />
+
+function handlePayButtonClick(e) {
+    
+    const paymentForm = document.getElementById("payment-form")
+    
+    if(paymentForm.checkValidity()){
+        e.preventDefault()
+        const paymentFormData = new FormData(paymentForm)
+        customerName = paymentFormData.get("fullName")
+        
+        
+        paymentForm.reset()
+        document.getElementById('modal').style.display = "none"
+        completedOrder = true
+        orderArray = []
+        
+        render()    
+    }
+    
+}
+
+function handleCloseModalButtonClick(){
+    document.getElementById('modal').style.display = "none"
 }
 
 
@@ -84,9 +128,19 @@ function getOrderHtml() {
     
 }
 
+function getCompletedOrderHtml(message){
+    let completedOrderHtml=`
+    <div class="completed-order-message">
+        <h1>Thanks ${customerName}! Your order is on its way! </h1>
+    </div>`
+
+    return completedOrderHtml
+
+}
+
 function render(){
     document.getElementById("menu").innerHTML = getMenuHtml()
-    document.getElementById("order").innerHTML = getOrderHtml()
+    document.getElementById("order").innerHTML = completedOrder? getCompletedOrderHtml(): getOrderHtml()
 }
 
 render()
